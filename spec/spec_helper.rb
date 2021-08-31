@@ -2,10 +2,14 @@
 
 require "bundler/setup"
 require "veryfi"
+
 require "pry"
+require "rspec/its"
+require "simplecov"
 require "vcr"
 require "webmock/rspec"
-require "rspec/its"
+
+SimpleCov.start unless ENV["CI"]
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
