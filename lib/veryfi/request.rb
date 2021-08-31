@@ -88,11 +88,11 @@ module Veryfi
       )
     end
 
-    def default_headers(has_files: false)
+    def default_headers
       {
         "User-Agent": "Ruby Veryfi-Ruby/0.1.0",
         "Accept": "application/json",
-        "Content-Type": has_files ? "application/x-www-form-urlencoded" : "application/json",
+        "Content-Type": "application/json",
         "Client-Id": client_id,
         "Authorization": "apikey #{username}:#{api_key}"
       }
