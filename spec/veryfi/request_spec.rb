@@ -21,7 +21,10 @@ RSpec.describe Veryfi::Request do
     end
 
     it "raises error" do
-      expect { client.document.all }.to raise_error(Veryfi::Error::UnauthorizedAccessToken)
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::UnauthorizedAccessToken,
+        "Unauthorized Access Token"
+      )
     end
   end
 
