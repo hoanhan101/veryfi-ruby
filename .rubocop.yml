@@ -6,6 +6,7 @@ AllCops:
     - bin/**/*
     - tmp/**/*
     - .bundle/**/*
+    - vendor/**/*
     - veryfi.gemspec
 
 Style/Documentation:
