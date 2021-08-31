@@ -22,8 +22,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.license = "MIT"
 
-  spec.add_dependency "faraday", "~> 1.7"
+  spec.add_dependency "base64", "~> 0.1"
   spec.add_dependency "openssl", "~> 2.2"
+
+  spec.add_dependency "faraday", "~> 1.7"
 
   spec.add_development_dependency "bundler", "~> 1.17"
   spec.add_development_dependency "bundler-audit", "~> 0.6"
