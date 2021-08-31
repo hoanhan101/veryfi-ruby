@@ -1,12 +1,6 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
-ruby "2.7.2"
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-group :development do
-  gem "bundler-audit", require: false
-  gem "rspec"
-  gem "rubocop"
-  gem "rubocop-rspec", require: false
-end
+# Specify your gem's dependencies in veryfi.gemspec
+gemspec
