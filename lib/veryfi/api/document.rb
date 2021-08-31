@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "Base64"
+require "base64"
 
 module Veryfi
   module Api
