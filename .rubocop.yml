@@ -2,6 +2,7 @@ require: rubocop-rspec
 
 AllCops:
   DisplayCopNames: true
+  NewCops: enable
   Exclude:
     - bin/**/*
     - tmp/**/*
@@ -22,6 +23,9 @@ Style/CollectionMethods:
 Style/SymbolArray:
   Description: 'Use %i or %I for arrays of symbols.'
   Enabled: true
+
+Style/StringConcatenation:
+  Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
