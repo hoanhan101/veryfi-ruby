@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "Base64"
+
 module Veryfi
   module Api
     class Document
@@ -15,7 +17,22 @@ module Veryfi
         response.is_a?(Hash) ? [response] : response
       end
 
-      def create(params)
+      def process(params)
+        params = params.transform_keys { |k| k.to_sym }
+
+        file_content = File.read(params[:file_path])
+        file_name = File.basename(params[:file_path], ".*")
+        file_data = Base64.encode64(file_content).gsub("\n", "")
+
+        payload = params.reject { |k| k == :file_path }.merge(
+          file_name: file_name,
+          file_data: file_data
+        )
+
+        request.post("/partner/documents/", payload)
+      end
+
+      def process_url(params)
         request.post("/partner/documents/", params)
       end
 

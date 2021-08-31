@@ -24,7 +24,61 @@ RSpec.describe "Document API" do
     end
   end
 
-  describe "document.create(id, params)" do
+  describe "document.process(id, params)" do
+    before do
+      stub_request(:post, "https://api.veryfi.com/api/v7/partner/documents/").to_return(
+        body: documents[0].to_json
+      )
+    end
+
+    let(:document_params) do
+      {
+        "file_path": Dir.pwd + "/spec/fixtures/receipt.jpg",
+        "auto_delete": 1,
+        "boost_mode": 1,
+        "async": 1,
+        "external_id": "123456789",
+        "max_pages_to_process": 10,
+        "tags": [
+          "tag1"
+        ],
+        "categories": [
+          "Advertising & Marketing",
+          "Automotive"
+        ]
+      }
+    end
+
+    let(:expected_file_data) do
+      File.read("spec/fixtures/receipt_base64.txt").gsub("\n", "")
+    end
+
+    it "can process document" do
+      expect_any_instance_of(Veryfi::Request).to receive(:post).with(
+        "/partner/documents/",
+        {
+          file_name: "receipt",
+          file_data: expected_file_data,
+          auto_delete: 1,
+          boost_mode: 1,
+          async: 1,
+          external_id: "123456789",
+          max_pages_to_process: 10,
+          tags: [ "tag1" ],
+          categories: [
+            "Advertising & Marketing",
+            "Automotive"
+          ]
+        }
+      ).and_call_original
+
+      response = client.document.process(document_params)
+
+      expect(response["id"]).to eq(38_947_300)
+    end
+  end
+
+  describe "document.process_url(id, params)" do
     before do
       stub_request(:post, "https://api.veryfi.com/api/v7/partner/documents/").to_return(
         body: documents[0].to_json
@@ -53,8 +107,8 @@ RSpec.describe "Document API" do
       }
     end
 
-    it "can fetch document by id" do
-      response = client.document.create(document_params)
+    it "can process document from url" do
+      response = client.document.process_url(document_params)
 
       expect(response["id"]).to eq(38_947_300)
     end
