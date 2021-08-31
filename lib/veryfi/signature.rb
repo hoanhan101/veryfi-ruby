@@ -20,7 +20,7 @@ module Veryfi
     # private
 
     def digest
-      OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new("sha256"), secret, payload)
+      OpenSSL::HMAC.digest(OpenSSL::Digest.new("sha256"), secret, payload)
     end
 
     def payload
