@@ -10,7 +10,9 @@ module Veryfi
       end
 
       def all(params = {})
-        request.get("/partner/documents/", params)
+        response = request.get("/partner/documents/", params)
+
+        Array(response)
       end
 
       def get(id, params = {})
