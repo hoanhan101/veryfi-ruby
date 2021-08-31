@@ -31,7 +31,7 @@ gem install veryfi
 
 Or add to your Gemfile:
 ```ruby
-gem 'veryfi'
+gem 'veryfi', '>= 0.1.0'
 ```
 
 ## Getting Started
