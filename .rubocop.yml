@@ -6,6 +6,7 @@ AllCops:
     - bin/**/*
     - tmp/**/*
     - .bundle/**/*
+    - veryfi.gemspec
 
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
@@ -51,6 +52,10 @@ Lint/StructNewOverride:
 
 Metrics/ParameterLists:
   Max: 7
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
 
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: required
