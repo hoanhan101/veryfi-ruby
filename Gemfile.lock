@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     veryfi (0.1.0)
-      base64
+      base64 (~> 0.1)
       faraday (~> 1.7)
       openssl (~> 2.2)
 
