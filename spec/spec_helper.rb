@@ -9,7 +9,21 @@ require "simplecov"
 require "vcr"
 require "webmock/rspec"
 
-SimpleCov.start unless ENV["CI"]
+unless ENV["CI"]
+  SimpleCov.start do
+    require "simplecov-badge"
+
+    SimpleCov::Formatter::BadgeFormatter.generate_groups = false
+    SimpleCov::Formatter::BadgeFormatter.strength_foreground = false
+    SimpleCov::Formatter::BadgeFormatter.timestamp = true
+
+    # call SimpleCov::Formatter::BadgeFormatter after the normal HTMLFormatter
+    SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+      SimpleCov::Formatter::HTMLFormatter,
+      SimpleCov::Formatter::BadgeFormatter,
+    ]
+  end
+end
 
 WebMock.disable_net_connect!(allow_localhost: true)
 

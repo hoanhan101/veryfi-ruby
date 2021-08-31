@@ -3,8 +3,9 @@
 ![Veryfi Logo](https://cdn.veryfi.com/logos/veryfi-logo-wide-github.png)
 
 [![Version](https://img.shields.io/gem/v/veryfi)](https://rubygems.org/gems/veryfi)
-[![Coverage](https://img.shields.io/badge/coverage-98.59%25-green)](https://github.com/slavakisel/veryfi-ruby/tree/main/coverage/index.html)
 [![Test](https://github.com/slavakisel/veryfi-ruby/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/slavakisel/veryfi-ruby/actions/workflows/test.yml)
+
+[![Coverage](https://raw.githubusercontent.com/slavakisel/veryfi-ruby/main/coverage/coverage-badge.png)](https://raw.githubusercontent.com/slavakisel/veryfi-ruby/main/coverage/coverage-badge.png)
 
 ## Table of Contents
 
