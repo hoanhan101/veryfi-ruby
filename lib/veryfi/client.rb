@@ -2,24 +2,6 @@
 
 module Veryfi
   class Client
-    CATEGORIES = [
-      "Advertising & Marketing",
-      "Automotive",
-      "Bank Charges & Fees",
-      "Legal & Professional Services",
-      "Insurance",
-      "Meals & Entertainment",
-      "Office Supplies & Software",
-      "Taxes & Licenses",
-      "Travel",
-      "Rent & Lease",
-      "Repairs & Maintenance",
-      "Payroll",
-      "Utilities",
-      "Job Supplies",
-      "Grocery"
-    ].freeze
-
     attr_reader :request
 
     def initialize(

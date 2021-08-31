@@ -11,8 +11,8 @@
     - [Obtaining Client ID and user keys](#obtaining-client-id-and-user-keys)
     - [Ruby API Client Library](#ruby-api-client-library)
     - [Extracting Data](#extracting-data)
-    - [Response](#response)
-    - [Updating a document](#updating-a-document)
+    - [Document Response Example](#document-response-example)
+    - [Other methods](#other-methods)
   - [Need help?](#need-help)
     - [Learn more at our blog](#learn-more-at-our-blog)
   - [Tutorial Video](#tutorial-video)
@@ -57,15 +57,26 @@ veryfi_client = Veryfi::Client.new(
   username: 'your_username',
   api_key: 'your_password'
 )
-
-categories = ['Grocery', 'Utilities', 'Travel'];
-file_path = './test/receipt.png';
 ```
 
 This submits a document for processing (3-5 seconds for a response)
 
 ```ruby
-response = veryfi_client.process_document(file_path, categories)
+params = {
+  file_path: './test/receipt.jpg',
+  auto_delete: 1,
+  boost_mode: 1,
+  async: 1,
+  external_id: '123456789',
+  max_pages_to_process: 10,
+  tags: ['tag1'],
+  categories: [
+    'Advertising & Marketing',
+    'Automotive'
+  ]
+}
+
+response = veryfi_client.document.process(params)
 
 puts response
 ```
@@ -73,12 +84,26 @@ puts response
 ...or with a URL
 
 ```ruby
-response = veryfi_client.process_document_url(url, external_id)
+params = {
+  file_url: "https://raw.githubusercontent.com/veryfi/veryfi-python/master/tests/assets/receipt_public.jpg",
+  auto_delete: 1,
+  boost_mode: 1,
+  async: 1,
+  external_id: "123456789",
+  max_pages_to_process: 10,
+  tags: ["tag1"],
+  categories: [
+    "Advertising & Marketing",
+    "Automotive"
+  ]
+}
+
+response = veryfi_client.document.process_url(params)
 
 puts response
 ```
 
-### Response
+### Document Response Example
 
 ```json
 {
@@ -215,9 +240,50 @@ puts response
 }
 ```
 
-### Updating a document
+### Other methods
 
 ```ruby
+# Update document
+veryfi_client.document.update(document_id, params)
+
+# Delete document by ID
+veryfi_client.document.delete(document_id)
+
+# Get document by ID
+veryfi_client.document.get(document_id)
+
+# List all documents
+veryfi_client.document.all
+
+# Get document line items
+veryfi_client.line_items.all(document_id)
+
+# Get line item by document id and line item id
+veryfi_client.line_items.get(document_id, id)
+
+# Create/update/delete document line item
+veryfi_client.line_items.create(document_id, params)
+veryfi_client.line_items.update(document_id, params)
+veryfi_client.line_items.delete(document_id, params)
+
+# Tags
+# List all tags
+veryfi_client.tag.all
+
+# Delete a tag by ID
+veryfi_client.tag.delete(id)
+
+# List all document tags
+veryfi_client.document_tag.all(document_id)
+
+# Add tag to document
+veryfi_client.document_tag.add(document_id, name: "tag_name")
+
+# Delete tag by document id and tag id
+veryfi_client.document_tag.delete(document_id, id)
+
+# Delete all document tags
+veryfi_client.document_tag.delete_all(document_id)
 ```
 
 ## Need help?
@@ -225,7 +291,6 @@ puts response
 If you run into any issue or need help installing or using the library, please contact support@veryfi.com.
 
 If you found a bug in this library or would like new features added, then open an issue or pull requests against this repo!
-
 ### [Learn more at our blog](https://www.veryfi.com/ruby/)
 
 ## Tutorial Video
