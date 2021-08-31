@@ -8,7 +8,7 @@ module Veryfi
   class Request
     attr_reader :client_id, :client_secret, :username, :api_key, :base_url, :api_version, :timeout
 
-    VERBS_WITH_BODIES = %i(post put).freeze
+    VERBS_WITH_BODIES = %i[post put].freeze
 
     def initialize(
       client_id,
@@ -92,7 +92,7 @@ module Veryfi
       Veryfi::Signature.new(client_secret, params, timestamp).to_base64
     end
 
-    def process_response(http_verb, response)
+    def process_response(_http_verb, response)
       # return response if http_verb == :delete
 
       JSON.parse(response.body)

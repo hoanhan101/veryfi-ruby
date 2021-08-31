@@ -60,6 +60,12 @@ Metrics/BlockLength:
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: required
 
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 5
+
 Style/HashEachMethods:
   Enabled: true
 

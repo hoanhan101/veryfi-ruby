@@ -2,9 +2,9 @@
 
 require "spec_helper"
 
-RSpec.describe Veryfi::Client do
+RSpec.describe "Document API" do
   subject(:client) do
-    described_class.new(
+    Veryfi::Client.new(
       client_id: "fBvJLm1zCJ8Doxf94mMrpbrkDp8nr",
       client_secret: "FDPXbxHTrSKPAVOJGoB0doUWhJmmbcm3ajFTwtclagdlygkp3yuIMJjirFbO1oKGC4nr",
       username: "john_doe",
@@ -38,11 +38,9 @@ RSpec.describe Veryfi::Client do
       )
     end
 
-    it "can fetch document by id" do
-      response = client.document.create(
+    let(:document_params) do
+      {
         "file_name": "invoice.png",
-        "file": "string",
-        "file_data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=",
         "file_url": "https://raw.githubusercontent.com/veryfi/veryfi-python/master/tests/assets/receipt_public.jpg",
         "file_urls": [
           "https://raw.githubusercontent.com/veryfi/veryfi-python/master/tests/assets/receipt_public.jpg"
@@ -59,7 +57,11 @@ RSpec.describe Veryfi::Client do
           "Advertising & Marketing",
           "Automotive"
         ]
-      )
+      }
+    end
+
+    it "can fetch document by id" do
+      response = client.document.create(document_params)
 
       expect(response["id"]).to eq(38_947_300)
     end
@@ -97,7 +99,7 @@ RSpec.describe Veryfi::Client do
   describe "document.delete(id)" do
     before do
       stub_request(:delete, "https://api.veryfi.com/api/v7/partner/documents/38947300").to_return(
-        body: {status: "ok", message: "Document has been deleted"}.to_json
+        body: { status: "ok", message: "Document has been deleted" }.to_json
       )
     end
 
