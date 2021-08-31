@@ -55,9 +55,15 @@ module Veryfi
       body = generate_body(http_verb, params)
       headers = generate_headers(params)
 
-      response = Faraday.public_send(http_verb, url, body, headers)
+      response = conn.public_send(http_verb, url, body, headers)
 
       process_response(http_verb, response)
+    end
+
+    def conn
+      @_conn ||= Faraday.new do |conn|
+        conn.options.timeout = timeout
+      end
     end
 
     def generate_body(http_verb, params)

@@ -29,7 +29,7 @@ module Veryfi
       api_key:,
       base_url: "https://api.veryfi.com/api/",
       api_version: "v7",
-      timeout: 120
+      timeout: 20
     )
       @request = Veryfi::Request.new(client_id, client_secret, username, api_key, base_url, api_version, timeout)
     end
