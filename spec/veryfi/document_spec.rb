@@ -34,9 +34,9 @@ RSpec.describe "Document API" do
     let(:document_params) do
       {
         "file_path": Dir.pwd + "/spec/fixtures/receipt.jpg",
-        "auto_delete": 1,
-        "boost_mode": 1,
-        "async": 1,
+        "auto_delete": true,
+        "boost_mode": true,
+        "async": true,
         "external_id": "123456789",
         "max_pages_to_process": 10,
         "tags": [
@@ -57,9 +57,9 @@ RSpec.describe "Document API" do
       {
         file_name: "receipt",
         file_data: expected_file_data,
-        auto_delete: 1,
-        boost_mode: 1,
-        async: 1,
+        auto_delete: true,
+        boost_mode: true,
+        async: true,
         external_id: "123456789",
         max_pages_to_process: 10,
         tags: ["tag1"],
@@ -96,9 +96,9 @@ RSpec.describe "Document API" do
         "file_urls": [
           "https://raw.githubusercontent.com/veryfi/veryfi-python/master/tests/assets/receipt_public.jpg"
         ],
-        "auto_delete": 1,
-        "boost_mode": 1,
-        "async": 1,
+        "auto_delete": true,
+        "boost_mode": true,
+        "async": true,
         "external_id": "123456789",
         "max_pages_to_process": 10,
         "tags": [
