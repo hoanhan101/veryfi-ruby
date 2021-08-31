@@ -11,7 +11,10 @@ RSpec.describe Veryfi::Request do
     end
 
     it "raises error" do
-      expect { client.document.all }.to raise_error(Veryfi::Error::BadRequest)
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::BadRequest,
+        "Bad Request"
+      )
     end
   end
 
@@ -34,7 +37,10 @@ RSpec.describe Veryfi::Request do
     end
 
     it "raises error" do
-      expect { client.document.all }.to raise_error(Veryfi::Error::UnexpectedHTTPMethod)
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::UnexpectedHTTPMethod,
+        "Unexpected HTTP Method"
+      )
     end
   end
 
@@ -44,7 +50,10 @@ RSpec.describe Veryfi::Request do
     end
 
     it "raises error" do
-      expect { client.document.all }.to raise_error(Veryfi::Error::AccessLimitReached)
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::AccessLimitReached,
+        "Access Limit Reached"
+      )
     end
   end
 
@@ -54,7 +63,10 @@ RSpec.describe Veryfi::Request do
     end
 
     it "raises error" do
-      expect { client.document.all }.to raise_error(Veryfi::Error::InternalError)
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::InternalError,
+        "Internal Server Error"
+      )
     end
   end
 end
