@@ -315,4 +315,4 @@ bin/setup
 
 ## Develop
 
-`bin/build` checks your specs and runs quality tools
+`bin/ci` checks your specs and runs quality tools
