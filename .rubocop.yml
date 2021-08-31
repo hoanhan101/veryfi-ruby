@@ -75,6 +75,9 @@ RSpec/MultipleExpectations:
 RSpec/SharedExamples:
   Enabled: false
 
+Style/GuardClause:
+  Enabled: false
+
 Style/HashEachMethods:
   Enabled: true
 

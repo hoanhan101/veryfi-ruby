@@ -57,7 +57,11 @@ module Veryfi
 
       response = conn.public_send(http_verb, url, body, headers)
 
-      process_response(http_verb, response)
+      if response.success?
+        process_response(http_verb, response)
+      else
+        raise Veryfi::Error.from_response(response)
+      end
     end
 
     def conn

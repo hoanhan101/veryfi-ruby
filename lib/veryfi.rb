@@ -4,6 +4,7 @@ module Veryfi
   autoload :VERSION, "veryfi/version"
   autoload :Signature, "veryfi/signature"
   autoload :Request, "veryfi/request"
+  autoload :Error, "veryfi/error"
 
   module Api
     autoload :Document, "veryfi/api/document"
