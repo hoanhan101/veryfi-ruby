@@ -8,6 +8,8 @@ module Veryfi
   class Request
     attr_reader :client_id, :client_secret, :username, :api_key, :base_url, :api_version, :timeout
 
+    VERBS_WITH_BODIES = %i(post put).freeze
+
     def initialize(
       client_id,
       client_secret,
@@ -26,11 +28,20 @@ module Veryfi
       @timeout = timeout
     end
 
-    def get(path, params)
-      url = [api_url, path].join
-      headers = generate_headers(params)
-      response = Faraday.get(url, params, headers)
-      JSON.parse(response.body)
+    def get(path, params = {})
+      make_request(:get, path, params)
+    end
+
+    def put(path, params)
+      make_request(:put, path, params)
+    end
+
+    def post(path, params)
+      make_request(:post, path, params)
+    end
+
+    def delete(path)
+      make_request(:delete, path)
     end
 
     def api_url
@@ -38,6 +49,22 @@ module Veryfi
     end
 
     private
+
+    def make_request(http_verb, path, params = {})
+      url = [api_url, path].join
+      body = generate_body(http_verb, params)
+      headers = generate_headers(params)
+
+      response = Faraday.public_send(http_verb, url, body, headers)
+
+      process_response(http_verb, response)
+    end
+
+    def generate_body(http_verb, params)
+      return params unless VERBS_WITH_BODIES.include?(http_verb)
+
+      params.to_json
+    end
 
     def generate_headers(params = {})
       return default_headers if client_secret.nil?
@@ -63,6 +90,12 @@ module Veryfi
 
     def generate_signature(params, timestamp)
       Veryfi::Signature.new(client_secret, params, timestamp).to_base64
+    end
+
+    def process_response(http_verb, response)
+      # return response if http_verb == :delete
+
+      JSON.parse(response.body)
     end
   end
 end

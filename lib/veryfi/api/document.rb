@@ -15,8 +15,20 @@ module Veryfi
         Array(response)
       end
 
+      def create(params)
+        request.post("/partner/documents/", params)
+      end
+
       def get(id, params = {})
         request.get("/partner/documents/#{id}", params)
+      end
+
+      def update(id, params)
+        request.put("/partner/documents/#{id}", params)
+      end
+
+      def delete(id)
+        request.delete("/partner/documents/#{id}")
       end
     end
   end
