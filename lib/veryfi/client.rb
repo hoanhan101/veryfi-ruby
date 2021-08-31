@@ -38,6 +38,10 @@ module Veryfi
       @_document ||= Veryfi::Api::Document.new(request)
     end
 
+    def line_item
+      @_line_item ||= Veryfi::Api::LineItem.new(request)
+    end
+
     def api_url
       request.api_url
     end

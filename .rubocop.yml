@@ -66,6 +66,9 @@ RSpec/DescribeClass:
 RSpec/MultipleExpectations:
   Max: 5
 
+RSpec/SharedExamples:
+  Enabled: false
+
 Style/HashEachMethods:
   Enabled: true
 

@@ -12,7 +12,7 @@ module Veryfi
       def all(params = {})
         response = request.get("/partner/documents/", params)
 
-        Array(response)
+        response.is_a?(Hash) ? [response] : response
       end
 
       def create(params)

@@ -7,6 +7,7 @@ module Veryfi
 
   module Api
     autoload :Document, "veryfi/api/document"
+    autoload :LineItem, "veryfi/api/line_item"
   end
 
   autoload :Client, "veryfi/client"

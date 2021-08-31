@@ -3,19 +3,12 @@
 require "spec_helper"
 
 RSpec.describe "Document API" do
-  subject(:client) do
-    Veryfi::Client.new(
-      client_id: "fBvJLm1zCJ8Doxf94mMrpbrkDp8nr",
-      client_secret: "FDPXbxHTrSKPAVOJGoB0doUWhJmmbcm3ajFTwtclagdlygkp3yuIMJjirFbO1oKGC4nr",
-      username: "john_doe",
-      api_key: "35a7120b190e40df477a170149c63977"
-    )
-  end
+  include_context :with_veryfi_client
 
   let(:documents_fixture) { File.read("spec/fixtures/documents.json") }
   let(:documents) { JSON.parse(documents_fixture) }
 
-  its(:api_url) { is_expected.to eq "https://api.veryfi.com/api/v7" }
+  it { expect(client.api_url).to eq "https://api.veryfi.com/api/v7" }
 
   describe "document.all" do
     before do
