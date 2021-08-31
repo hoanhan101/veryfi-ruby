@@ -53,23 +53,27 @@ RSpec.describe "Document API" do
       File.read("spec/fixtures/receipt_base64.txt").gsub("\n", "")
     end
 
+    let(:expected_document_params) do
+      {
+        file_name: "receipt",
+        file_data: expected_file_data,
+        auto_delete: 1,
+        boost_mode: 1,
+        async: 1,
+        external_id: "123456789",
+        max_pages_to_process: 10,
+        tags: ["tag1"],
+        categories: [
+          "Advertising & Marketing",
+          "Automotive"
+        ]
+      }
+    end
+
     it "can process document" do
       expect_any_instance_of(Veryfi::Request).to receive(:post).with(
         "/partner/documents/",
-        {
-          file_name: "receipt",
-          file_data: expected_file_data,
-          auto_delete: 1,
-          boost_mode: 1,
-          async: 1,
-          external_id: "123456789",
-          max_pages_to_process: 10,
-          tags: [ "tag1" ],
-          categories: [
-            "Advertising & Marketing",
-            "Automotive"
-          ]
-        }
+        expected_document_params
       ).and_call_original
 
       response = client.document.process(document_params)

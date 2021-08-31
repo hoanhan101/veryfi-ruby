@@ -18,7 +18,7 @@ module Veryfi
       end
 
       def process(params)
-        params = params.transform_keys { |k| k.to_sym }
+        params = params.transform_keys(&:to_sym)
 
         file_content = File.read(params[:file_path])
         file_name = File.basename(params[:file_path], ".*")

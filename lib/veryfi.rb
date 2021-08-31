@@ -8,6 +8,8 @@ module Veryfi
   module Api
     autoload :Document, "veryfi/api/document"
     autoload :LineItem, "veryfi/api/line_item"
+    autoload :Tag, "veryfi/api/tag"
+    autoload :DocumentTag, "veryfi/api/document_tag"
   end
 
   autoload :Client, "veryfi/client"

@@ -42,6 +42,14 @@ module Veryfi
       @_line_item ||= Veryfi::Api::LineItem.new(request)
     end
 
+    def tag
+      @_tag ||= Veryfi::Api::Tag.new(request)
+    end
+
+    def document_tag
+      @_document_tag ||= Veryfi::Api::DocumentTag.new(request)
+    end
+
     def api_url
       request.api_url
     end

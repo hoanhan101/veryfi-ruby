@@ -25,7 +25,7 @@ RSpec.describe "LineItem API" do
     end
   end
 
-  describe "line_item.create(document_id, id, params)" do
+  describe "line_item.create(document_id, params)" do
     before do
       stub_request(:post, "#{base_url}/line-items/").to_return(
         body: line_items[0].to_json
