@@ -21,7 +21,7 @@
   - [Quality tools](#quality-tools)
   - [Develop](#develop)
 
-**veryfi** is a Ruby gem for communicating with the [Veryfi OCR API](https://veryfi.com/api/)
+**veryfi-ruby** is a Ruby gem for communicating with the [Veryfi OCR API](https://veryfi.com/api/)
 
 ## Installation
 
@@ -42,7 +42,7 @@ If you don't have an account with Veryfi, please go ahead and register here: [ht
 
 ### Ruby API Client Library
 
-The **veryfi** gem can be used to communicate with Veryfi API. All available functionality is described [in docs](https://skdev.info/veryfi-ruby/)
+The **veryfi-ruby** gem can be used to communicate with Veryfi API. All available functionality is described [in docs](https://skdev.info/veryfi-ruby/)
 
 ## Need help?
 
